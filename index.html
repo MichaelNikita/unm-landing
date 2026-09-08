@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ЮНМ — Готова система за один вечір</title>
 <meta name="description" content="Безкоштовний вебінар 22 вересня о 19:00 за київським часом: готова система банерної монетизації YouTube Shorts та Reels — $2 000 з першого місяця.">
 <meta name="theme-color" content="#0B0A0C">
@@ -24,329 +24,260 @@
     color-scheme:dark;
 
     --ground:#0B0A0C;
+    --ground-2:#100D0F;
     --surface:#141013;
     --surface-2:#1C1418;
     --ink:#F5F2F3;
     --ink-2:#A2969A;
+    --ink-3:#6E6367;
     --rule:#2E2226;
-    --rule-soft:#241A1E;
     --accent:#FF1522;
-    --accent-soft:#8E0D14;
+    --accent-lo:#8E0D14;
     --accent-deep:#4B0A10;
-    --accent-ink:#FFFFFF;
-    --screen:#000000;
-    --screen-ink:#FFFFFF;
-    --screen-dim:#8C8286;
+    --on-accent:#FFFFFF;
 
     --display:"Unbounded","Trebuchet MS",system-ui,sans-serif;
     --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
     --mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
 
-    --shell:1120px;
+    --pad:20px;
+    --shell:1080px;
+    --dock-h:76px;
   }
 
   *{box-sizing:border-box}
+
   body{
+    margin:0;
     background-color:var(--ground);
-    background-image:radial-gradient(135% 62% at 50% -8%, rgba(255,21,34,.22), rgba(255,21,34,0) 62%);
-    background-repeat:no-repeat;
-    background-attachment:fixed;
     color:var(--ink);
     font-family:var(--body);
     font-size:16px;
     line-height:1.55;
     -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
   }
-  .shell{max-width:var(--shell);margin:0 auto;padding:0 28px}
+
+  .shell{width:100%;max-width:var(--shell);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+
   .mono{
-    font-family:var(--mono);
-    font-size:11px;
-    font-weight:500;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    color:var(--ink-2);
+    font-family:var(--mono);font-size:11px;font-weight:500;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);
   }
 
-  /* ---------- key visual ---------- */
-  .key-visual{
-    margin:0;
-    background:var(--ground);
-    border-bottom:1px solid var(--rule);
-  }
-  .key-visual img{
-    display:block;
-    width:100%;
-    max-width:var(--shell);
-    margin:0 auto;
-    height:auto;
-  }
-
-  /* ---------- rail ---------- */
-  .rail{border-bottom:1px solid var(--rule)}
-  .rail .shell{
-    display:flex;align-items:center;justify-content:space-between;
-    gap:16px;padding-top:14px;padding-bottom:14px;
-  }
-  .wordmark{
-    font-family:var(--display);font-weight:900;font-size:15px;
-    letter-spacing:.06em;color:var(--ink);
-  }
-  .live{display:flex;align-items:center;gap:8px}
-  .dot{
-    width:7px;height:7px;border-radius:50%;background:var(--accent);
-    animation:blink 2.4s ease-in-out infinite;
-  }
+  /* ============ top bar ============ */
+  .top{border-bottom:1px solid var(--rule);background:var(--ground)}
+  .top .shell{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;padding-bottom:12px}
+  .wordmark{font-family:var(--display);font-weight:900;font-size:14px;letter-spacing:.06em}
+  .top .live{display:flex;align-items:center;gap:7px}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:blink 2.4s ease-in-out infinite}
   @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 
-  /* ---------- hero ---------- */
-  .hero .shell{
-    display:grid;
-    grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr);
-    gap:56px;
-    padding-top:56px;padding-bottom:52px;
-    align-items:start;
+  /* ============ hero ============ */
+  .hero{position:relative}
+  .photo{position:relative;width:100%;height:min(44vh,360px);overflow:hidden;background:#120C0E}
+  .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block}
+  .photo::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(11,10,12,0) 30%,rgba(11,10,12,.75) 72%,var(--ground) 100%);
   }
-  .eyebrow{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
-  .eyebrow span{
-    font-family:var(--mono);font-size:11px;font-weight:500;
-    letter-spacing:.14em;text-transform:uppercase;
-    border:1px solid var(--rule);border-radius:2px;
-    padding:5px 9px;color:var(--ink-2);
-  }
-  .eyebrow span.hot{
-    border-color:transparent;background:var(--accent);color:var(--accent-ink);
+  .hero-copy{position:relative;margin-top:-34px;display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+
+  .pill{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--accent);color:var(--on-accent);
+    font-family:var(--mono);font-size:10.5px;font-weight:600;
+    letter-spacing:.16em;text-transform:uppercase;
+    padding:6px 10px;border-radius:3px;
   }
   h1{
-    font-family:var(--display);
-    font-weight:900;
-    font-size:clamp(38px,6.2vw,68px);
-    line-height:.98;
-    letter-spacing:-.025em;
-    text-wrap:balance;
-    margin:0 0 26px;
-  }
-  h1 em{font-style:normal;display:block;color:var(--accent);font-weight:900}
-  .promise{
-    display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;
-    border-top:1px solid var(--rule);padding-top:20px;
-  }
-  .figure{
     font-family:var(--display);font-weight:900;
-    font-size:clamp(44px,7vw,74px);line-height:.9;
-    letter-spacing:-.03em;color:var(--ink);
-    font-variant-numeric:tabular-nums;
-    border-bottom:6px solid var(--accent);padding-bottom:2px;
+    font-size:clamp(33px,8.6vw,68px);line-height:1;letter-spacing:-.03em;
+    margin:0;text-wrap:balance;
   }
-  .promise p{margin:0;max-width:26ch;font-size:17px;color:var(--ink)}
-  .promise p b{font-weight:600}
+  h1 em{font-style:normal;display:block;color:var(--accent)}
+  .sub{margin:0;font-size:16px;line-height:1.5;color:var(--ink-2);max-width:34ch}
+  .sum{
+    font-family:var(--display);font-weight:900;color:var(--ink);
+    font-variant-numeric:tabular-nums;white-space:nowrap;
+    border-bottom:4px solid var(--accent);padding-bottom:1px;
+  }
+  .when{
+    display:flex;flex-direction:column;gap:2px;
+    border-left:2px solid var(--accent);padding-left:12px;
+  }
+  .when b{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:-.01em}
+  .when span{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
 
-  /* ---------- the screen ---------- */
-  .screen-wrap{display:flex;flex-direction:column;gap:12px;align-items:center}
-  .screen{
-    position:relative;width:100%;max-width:258px;aspect-ratio:9/16;
-    background:var(--screen);border-radius:20px;overflow:hidden;
-    box-shadow:0 24px 50px -28px rgba(0,0,0,.6);
+  /* ============ buttons ============ */
+  .btn{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    width:100%;text-align:center;text-decoration:none;
+    background:var(--accent);color:var(--on-accent);
+    font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-.01em;
+    padding:17px 22px;border-radius:5px;
+    box-shadow:0 10px 30px -12px rgba(255,21,34,.75);
+    transition:transform .16s ease, box-shadow .16s ease;
   }
+  .btn:active{transform:translateY(1px)}
+  .btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+  .btn .arrow{font-family:var(--mono);font-weight:400}
+
+  /* ============ promise ============ */
+  .promise{border-top:1px solid var(--rule);margin-top:44px}
+  .promise .shell{padding-top:36px;padding-bottom:36px}
+  .promise p{
+    margin:0;font-family:var(--display);font-weight:400;
+    font-size:clamp(19px,5vw,30px);line-height:1.35;letter-spacing:-.02em;text-wrap:pretty;
+  }
+  .promise b{font-weight:700;color:var(--accent)}
+
+  /* ============ programme ============ */
+  .programme{background:var(--ground-2);border-top:1px solid var(--rule)}
+  .programme .shell{padding-top:36px;padding-bottom:40px}
+  .programme h2{margin:0;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
+  .steps{list-style:none;margin:22px 0 0;padding:0}
+  .steps li{position:relative;padding:0 0 26px 26px}
+  .steps li::before{
+    content:"";position:absolute;left:4px;top:6px;bottom:-6px;width:1px;background:var(--rule);
+  }
+  .steps li:last-child{padding-bottom:0}
+  .steps li:last-child::before{display:none}
+  .steps li::after{
+    content:"";position:absolute;left:0;top:5px;width:9px;height:9px;border-radius:50%;
+    background:var(--ground-2);border:2px solid var(--accent);
+  }
+  .steps .key{
+    display:block;font-family:var(--mono);font-size:10.5px;font-weight:600;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;
+  }
+  .steps li.demo::before,.steps li.demo::after{display:none}
+  .steps p{margin:0;font-size:16.5px;line-height:1.5;max-width:56ch}
+  .steps p b{font-weight:600}
+
+  /* ---- what a banner looks like ---- */
+  .demo{display:flex;gap:16px;align-items:center;margin-top:16px;padding:14px;background:var(--surface);border:1px solid var(--rule);border-radius:10px}
+  .screen{position:relative;width:96px;flex:none;aspect-ratio:9/16;background:#000;border-radius:9px;overflow:hidden}
   .screen::before{
     content:"";position:absolute;inset:0;
-    background:
-      radial-gradient(120% 70% at 22% 18%, rgba(255,255,255,.10), transparent 60%),
-      radial-gradient(90% 60% at 85% 90%, rgba(255,21,34,.34), transparent 65%);
+    background:radial-gradient(120% 70% at 25% 15%,rgba(255,255,255,.10),transparent 60%),
+               radial-gradient(90% 60% at 85% 90%,rgba(255,21,34,.34),transparent 65%);
   }
-  .screen-top{
-    position:absolute;top:14px;left:14px;right:14px;
-    display:flex;justify-content:space-between;align-items:center;
-    font-family:var(--mono);font-size:9px;letter-spacing:.12em;
-    text-transform:uppercase;color:var(--screen-dim);
+  .screen .strip{
+    position:absolute;left:7px;right:7px;bottom:22px;
+    background:var(--accent);color:var(--on-accent);border-radius:4px;padding:5px 6px;
+    font-family:var(--mono);font-size:6.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    display:flex;align-items:center;justify-content:space-between;gap:4px;
   }
-  .caption{
-    position:absolute;left:16px;right:16px;bottom:132px;
-    font-family:var(--display);font-weight:700;font-size:17px;line-height:1.25;
-    color:var(--screen-ink);letter-spacing:-.01em;
-  }
-  .caption mark{
-    background:var(--accent);color:var(--accent-ink);
-    padding:0 4px;border-radius:2px;
-  }
-  .banner{
-    position:absolute;left:12px;right:12px;bottom:44px;
-    background:var(--accent);color:var(--accent-ink);
-    border-radius:6px;padding:10px 12px;
-    display:flex;align-items:center;justify-content:space-between;gap:10px;
-    animation:rise .7s cubic-bezier(.2,.8,.25,1) .15s both;
-  }
-  @keyframes rise{from{transform:translateY(14px);opacity:0}to{transform:none;opacity:1}}
-  .banner .tag{
-    font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;
-    text-transform:uppercase;opacity:.8;display:block;margin-bottom:2px;
-  }
-  .banner .sum{
-    font-family:var(--display);font-weight:900;font-size:19px;
-    letter-spacing:-.02em;font-variant-numeric:tabular-nums;
-  }
-  .banner .close{
-    font-family:var(--mono);font-size:12px;opacity:.75;
-    border:1px solid currentColor;border-radius:50%;
-    width:15px;height:15px;display:grid;place-items:center;flex:none;
-  }
-  .bar{
-    position:absolute;left:12px;right:12px;bottom:24px;height:2px;
-    background:rgba(255,255,255,.18);border-radius:2px;
-  }
-  .bar i{display:block;height:100%;width:42%;background:var(--screen-ink);border-radius:2px}
-  .screen-note{
-    font-family:var(--mono);font-size:10px;letter-spacing:.12em;
-    text-transform:uppercase;color:var(--ink-2);text-align:center;
-  }
+  .screen .bar{position:absolute;left:7px;right:7px;bottom:12px;height:2px;background:rgba(255,255,255,.2);border-radius:2px}
+  .screen .bar i{display:block;height:100%;width:42%;background:#fff;border-radius:2px}
+  .demo-text{font-size:14px;line-height:1.45;color:var(--ink-2);margin:0}
+  .demo-text b{color:var(--ink);font-weight:600;display:block;font-family:var(--display);font-size:14px;margin-bottom:4px}
 
-  /* ---------- spec sheet ---------- */
-  .specs{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--surface-2)}
-  .specs .shell{
-    display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
-    padding-top:0;padding-bottom:0;
+  /* ============ close ============ */
+  .close{position:relative;border-top:1px solid var(--accent-lo);background:var(--ground);overflow:hidden}
+  .close::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(120% 90% at 50% 0%,rgba(255,21,34,.28),rgba(255,21,34,0) 65%);
   }
-  .cell{padding:22px 24px 24px;border-left:1px solid var(--rule-soft)}
-  .cell:first-child{border-left:0;padding-left:0}
-  .cell dt{margin:0 0 8px}
-  .cell dd{
+  .close .shell{position:relative;padding-top:44px;padding-bottom:44px;display:flex;flex-direction:column;gap:18px;align-items:flex-start}
+  .close h2{
     margin:0;font-family:var(--display);font-weight:700;
-    font-size:19px;letter-spacing:-.01em;line-height:1.2;
+    font-size:clamp(22px,6vw,36px);line-height:1.15;letter-spacing:-.02em;max-width:18ch;
   }
-  .cell dd small{display:block;font:400 13px/1.4 var(--body);color:var(--ink-2);letter-spacing:0;margin-top:4px}
-  .cell dd.free{color:var(--accent)}
-  #countdown{font-family:var(--mono);font-weight:600;font-size:19px;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+  .close .fine{margin:0;font-size:14px;color:var(--ink-2)}
 
-  /* ---------- lead ---------- */
-  .lead .shell{padding-top:56px;padding-bottom:14px;max-width:760px}
-  .lead p{
-    font-family:var(--display);font-weight:400;
-    font-size:clamp(19px,2.3vw,25px);line-height:1.42;
-    letter-spacing:-.015em;margin:0;text-wrap:pretty;
-  }
-  .lead p b{font-weight:700}
-
-  /* ---------- programme ---------- */
-  .programme .shell{padding-top:44px;padding-bottom:60px}
-  .programme h2{
-    font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.16em;
-    text-transform:uppercase;color:var(--ink-2);margin:0 0 4px;font-weight:500;
-  }
-  .rows{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:0}
-  .rows li{
-    display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;
-    padding:24px 0;border-top:1px solid var(--rule);
-  }
-  .rows li:last-child{border-bottom:1px solid var(--rule)}
-  .rows .key{
-    font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--accent);padding-top:5px;
-  }
-  .rows .val{font-size:18px;line-height:1.5;margin:0;max-width:62ch}
-  .rows .val b{font-weight:600}
-
-  /* ---------- cta ---------- */
-  .cta{border-top:1px solid var(--accent-soft);background:linear-gradient(180deg,var(--accent-deep) 0%,#170A0C 100%)}
-  .cta .shell{
-    padding-top:56px;padding-bottom:60px;
-    display:flex;flex-direction:column;align-items:flex-start;gap:20px;
-  }
-  .cta .kicker{
-    font-family:var(--display);font-weight:700;
-    font-size:clamp(22px,3.4vw,34px);line-height:1.15;letter-spacing:-.02em;
-    margin:0;max-width:20ch;
-  }
-  .btn{
-    display:inline-flex;align-items:center;gap:14px;
-    background:#FFFFFF;color:#0B0A0C;text-decoration:none;
-    font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:-.01em;
-    padding:19px 26px;border-radius:4px;
-    transition:transform .18s ease, filter .18s ease;
-  }
-  .btn .arrow{font-family:var(--mono);font-weight:400}
-  .btn:hover{transform:translateY(-2px);filter:saturate(1.1)}
-  .btn:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
-  .cta .fine{margin:0;font-size:14px;color:rgba(255,255,255,.7)}
-
+  /* ============ footer ============ */
   footer{border-top:1px solid var(--rule)}
-  footer .shell{
-    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
-    padding-top:18px;padding-bottom:26px;
-  }
+  footer .shell{display:flex;flex-direction:column;gap:6px;padding-top:20px;padding-bottom:calc(var(--dock-h) + 28px)}
 
-  @media (max-width:900px){
-    .hero .shell{grid-template-columns:1fr;gap:40px;padding-top:40px}
-    .screen-wrap{align-items:flex-start}
-    .specs .shell{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .cell{padding:20px 18px;border-left:1px solid var(--rule-soft)}
-    .cell:nth-child(odd){border-left:0;padding-left:0}
-    .cell:nth-child(n+3){border-top:1px solid var(--rule-soft)}
-    .rows li{grid-template-columns:1fr;gap:10px}
-    .rows .key{padding-top:0}
+  /* ============ sticky dock ============ */
+  .dock{
+    position:fixed;left:0;right:0;bottom:0;z-index:50;
+    background:rgba(11,10,12,.92);
+    -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+    border-top:1px solid var(--rule);
+    padding:10px var(--pad) calc(10px + env(safe-area-inset-bottom));
+    display:flex;align-items:center;gap:12px;
+    transition:transform .28s cubic-bezier(.2,.8,.25,1);
   }
-  @media (max-width:520px){
-    .shell{padding:0 20px}
-    .lead .shell,.programme .shell{padding-top:36px}
+  .js .dock{transform:translateY(130%)}
+  .js .dock.show{transform:none}
+  .dock .meta{display:flex;flex-direction:column;line-height:1.2;flex:none}
+  .dock .meta span{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .dock .meta b{font-family:var(--mono);font-weight:600;font-size:15px;font-variant-numeric:tabular-nums}
+  .dock .btn{flex:1;padding:14px 18px;font-size:15px;box-shadow:none}
+
+  /* ============ tablet / desktop ============ */
+  @media (min-width:720px){
+    :root{--pad:32px}
+    body{font-size:17px}
+    .photo{height:min(46vh,420px);border-radius:0}
+    .hero-copy{margin-top:-46px;gap:20px}
+    .sub{font-size:18px}
+    .btn{width:auto;min-width:300px}
+    .steps li{padding-left:34px;padding-bottom:32px}
+    .demo{max-width:520px}
+    .promise .shell,.programme .shell{padding-top:52px;padding-bottom:52px}
+    .dock{padding-left:32px;padding-right:32px}
+    .dock .btn{flex:none;min-width:280px}
+    .dock .meta{margin-right:auto}
   }
-  @media (prefers-reduced-motion: reduce){
+  @media (min-width:960px){
+    .hero .shell{
+      display:grid;grid-template-columns:minmax(0,1fr) 400px;
+      gap:48px;align-items:center;padding-top:56px;padding-bottom:64px;
+    }
+    .hero-copy{margin-top:0;gap:22px;order:1}
+    .photo{
+      order:2;height:520px;border-radius:14px;
+      border:1px solid var(--rule);
+    }
+    .photo::after{background:linear-gradient(180deg,rgba(11,10,12,0) 55%,rgba(11,10,12,.55) 100%)}
+    h1{font-size:clamp(44px,4.6vw,64px)}
+    .programme .shell{padding-top:64px;padding-bottom:72px}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0 28px;margin-top:30px}
+    .steps li{padding-bottom:0}
+    .steps li{padding-left:0;padding-top:26px}
+    .steps li::before{left:0;right:0;top:4px;bottom:auto;width:auto;height:1px}
+    .steps li::after{top:-1px;left:0}
+    .demo{grid-column:1/-1;margin-top:28px;max-width:560px}
+    .close .shell{padding-top:64px;padding-bottom:64px}
+  }
+  @media (prefers-reduced-motion:reduce){
     *{animation:none !important;transition:none !important}
   }
 </style>
 
-<figure class="key-visual">
-  <img src="cover.webp" alt="Вебінар ЮНМ — готова система за один вечір на $2 000 з першого місяця на банерній монетизації YouTube Shorts та Reels. 22.09, 19:00.">
-</figure>
+<script>document.documentElement.classList.add('js');</script>
 
-<header class="rail">
+<header class="top">
   <div class="shell">
     <span class="wordmark">ЮНМ</span>
-    <span class="live mono"><span class="dot"></span>Онлайн-вебінар · 22.09 · 19:00 Kyiv</span>
+    <span class="live mono"><span class="dot"></span>Онлайн-вебінар</span>
   </div>
 </header>
 
 <section class="hero">
+  <div class="photo">
+    <img src="hero.jpg" width="340" height="405" alt="Ведучі вебінару ЮНМ">
+  </div>
   <div class="shell">
-    <div>
-      <div class="eyebrow">
-        <span>YouTube Shorts</span>
-        <span>Reels</span>
-        <span>Банерна монетизація</span>
-        <span class="hot">Безкоштовно</span>
-      </div>
+    <div class="hero-copy">
+      <span class="pill">Безкоштовно</span>
       <h1>Готова система <em>за один вечір</em></h1>
-      <div class="promise">
-        <span class="figure">$2 000</span>
-        <p>з першого місяця на банерній монетизації <b>YouTube Shorts та Reels</b></p>
+      <p class="sub"><span class="sum">$2 000</span> з першого місяця на банерній монетизації YouTube Shorts та Reels</p>
+      <div class="when">
+        <b>22 вересня, 19:00</b>
+        <span>за київським часом</span>
       </div>
-    </div>
-
-    <div class="screen-wrap">
-      <div class="screen" role="img" aria-label="Вертикальне відео 9:16 з рекламним банером унизу екрана">
-        <div class="screen-top"><span>9:16</span><span>Shorts</span></div>
-        <p class="caption">без зйомок,<br>без камери,<br><mark>без твого лиця</mark></p>
-        <div class="banner">
-          <div>
-            <span class="tag">Банер партнера</span>
-            <span class="sum">$2 000 / міс</span>
-          </div>
-          <span class="close" aria-hidden="true">×</span>
-        </div>
-        <div class="bar"><i></i></div>
-      </div>
-      <p class="screen-note">Ось де живуть гроші</p>
+      <!-- Встав сюди посилання на реєстрацію замість "#" -->
+      <a class="btn" id="heroCta" href="#">Зареєструватися <span class="arrow" aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
 
-<section class="specs">
-  <dl class="shell">
-    <div class="cell"><dt class="mono">Дата</dt><dd>22 вересня<small>вівторок</small></dd></div>
-    <div class="cell"><dt class="mono">Початок</dt><dd>19:00<small>за київським часом</small></dd></div>
-    <div class="cell"><dt class="mono">Участь</dt><dd class="free">Безкоштовно<small>потрібна лише реєстрація</small></dd></div>
-    <div class="cell"><dt class="mono">До ефіру</dt><dd id="countdown">—</dd></div>
-  </dl>
-</section>
-
-<section class="lead">
+<section class="promise">
   <div class="shell">
     <p>За один вечір ти переймеш готову систему банерної монетизації YouTube Shorts та Reels — <b>без зйомок і складного монтажу.</b></p>
   </div>
@@ -355,29 +286,36 @@
 <section class="programme">
   <div class="shell">
     <h2>Що буде на вебінарі</h2>
-    <ul class="rows">
+    <ul class="steps">
       <li>
         <span class="key">Канал і ніша</span>
-        <p class="val">Дізнаєшся, як створити канал і обрати нішу, <b>що сама буде залітати в рекомендації</b>.</p>
+        <p>Дізнаєшся, як створити канал і обрати нішу, <b>що сама буде залітати в рекомендації</b>.</p>
       </li>
       <li>
         <span class="key">Контент</span>
-        <p class="val">Переймеш готовий алгоритм створення контенту — <b>без твого лиця, без камери і дорогої апаратури</b>.</p>
+        <p>Переймеш готовий алгоритм створення контенту — <b>без твого лиця, без камери і дорогої апаратури</b>.</p>
       </li>
       <li>
         <span class="key">Монетизація</span>
-        <p class="val">Отримаєш готову систему банерної монетизації і зрозумієш, <b>як влаштований ринок партнерств</b>.</p>
+        <p>Отримаєш готову систему банерної монетизації і зрозумієш, <b>як влаштований ринок партнерств</b>.</p>
+      </li>
+      <li class="demo">
+        <div class="screen" role="img" aria-label="Вертикальне відео з рекламним банером унизу екрана">
+          <span class="strip">Банер партнера<span aria-hidden="true">×</span></span>
+          <span class="bar"><i></i></span>
+        </div>
+        <p class="demo-text"><b>Як це виглядає</b>Смуга партнера в нижній третині вертикального відео. Рекламодавець платить за розміщення, а не за перегляди — тому дохід не залежить від ставок YouTube.</p>
       </li>
     </ul>
   </div>
 </section>
 
-<section class="cta">
+<section class="close">
   <div class="shell">
-    <p class="kicker">Натискай на кнопку, щоб зареєструватися</p>
-    <!-- Встав сюди посилання на реєстрацію (бот / форма) замість "#" -->
-    <a class="btn" href="#">Зареєструватися безкоштовно <span class="arrow" aria-hidden="true">↓</span></a>
-    <p class="fine">22 вересня, 19:00 за київським часом. Місце в ефірі закріплюється за тобою одразу після реєстрації.</p>
+    <h2>Натискай на кнопку, щоб зареєструватися</h2>
+    <!-- Встав сюди посилання на реєстрацію замість "#" -->
+    <a class="btn" href="#">Зареєструватися <span class="arrow" aria-hidden="true">→</span></a>
+    <p class="fine">Місце в ефірі закріплюється за тобою одразу після реєстрації.</p>
   </div>
 </section>
 
@@ -387,6 +325,15 @@
     <span class="mono">Онлайн · Українською</span>
   </div>
 </footer>
+
+<div class="dock" id="dock">
+  <div class="meta">
+    <span>До ефіру</span>
+    <b id="countdown">—</b>
+  </div>
+  <!-- Встав сюди посилання на реєстрацію замість "#" -->
+  <a class="btn" href="#">Зареєструватися</a>
+</div>
 
 <script>
   (function () {
@@ -400,12 +347,21 @@
       var h = Math.floor(left / 3600000) % 24;
       var m = Math.floor(left / 60000) % 60;
       var s = Math.floor(left / 1000) % 60;
-      el.textContent = d + 'д ' + pad(h) + ':' + pad(m) + ':' + pad(s);
+      el.textContent = (d > 0 ? d + 'д ' : '') + pad(h) + ':' + pad(m) + ':' + pad(s);
       setTimeout(tick, 1000);
     }
     tick();
+
+    var dock = document.getElementById('dock');
+    var hero = document.getElementById('heroCta');
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        dock.classList.toggle('show', !entries[0].isIntersecting);
+      }, { rootMargin: '-8px' }).observe(hero);
+    } else {
+      dock.classList.add('show');
+    }
   })();
 </script>
-
 </body>
 </html>
