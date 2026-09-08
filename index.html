@@ -274,7 +274,7 @@
         <b>22 вересня, 19:00</b>
         <span>за київським часом</span>
       </div>
-          <a class="btn" id="heroCta" href="https://tg.pulse.is/unmveb_bot?start=6a9fd5e82c19af0d6604cc53&amp;var1_name=value1&amp;var2_name=value2" target="_blank" rel="noopener">Зареєструватися <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn" id="heroCta" href="https://tg.pulse.is/unmveb_bot?start=6a9fd5e82c19af0d6604cc53&amp;utm_source=site" target="_blank" rel="noopener">Зареєструватися <span class="arrow" aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
@@ -315,7 +315,7 @@
 <section class="close">
   <div class="shell">
     <h2>Натискай на кнопку, щоб зареєструватися</h2>
-      <a class="btn" href="https://tg.pulse.is/unmveb_bot?start=6a9fd5e82c19af0d6604cc53&amp;var1_name=value1&amp;var2_name=value2" target="_blank" rel="noopener">Зареєструватися <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn" href="https://tg.pulse.is/unmveb_bot?start=6a9fd5e82c19af0d6604cc53&amp;utm_source=site" target="_blank" rel="noopener">Зареєструватися <span class="arrow" aria-hidden="true">→</span></a>
     <p class="fine">Місце в ефірі закріплюється за тобою одразу після реєстрації.</p>
   </div>
 </section>
@@ -332,7 +332,7 @@
     <span>До ефіру</span>
     <b id="countdown">—</b>
   </div>
-  <a class="btn" href="https://tg.pulse.is/unmveb_bot?start=6a9fd5e82c19af0d6604cc53&amp;var1_name=value1&amp;var2_name=value2" target="_blank" rel="noopener">Зареєструватися</a>
+  <a class="btn" href="https://tg.pulse.is/unmveb_bot?start=6a9fd5e82c19af0d6604cc53&amp;utm_source=site" target="_blank" rel="noopener">Зареєструватися</a>
 </div>
 
 <script>
@@ -351,6 +351,18 @@
       setTimeout(tick, 1000);
     }
     tick();
+
+    // мітки з адреси лендингу їдуть далі в бот: ?utm_source=link_bio
+    // перезаписує utm_source=site у кнопках, решта міток додається як є
+    var q = new URLSearchParams(location.search);
+    var utm = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+    if (utm.some(function (k) { return q.get(k); })) {
+      Array.prototype.forEach.call(document.querySelectorAll('a[href*="tg.pulse.is"]'), function (a) {
+        var u = new URL(a.href);
+        utm.forEach(function (k) { if (q.get(k)) u.searchParams.set(k, q.get(k)); });
+        a.href = u.toString();
+      });
+    }
 
     var dock = document.getElementById('dock');
     var hero = document.getElementById('heroCta');
