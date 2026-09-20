@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>YouTube на мільйон — менторська програма ЮНМ</title>
+<meta name="description" content="Вийди на дохід від $2 000 щомісяця на YouTube Shorts — без показу обличчя і складного монтажу, 2 години на день. Менторська програма Ензо та Аріза.">
+<meta name="theme-color" content="#0B0A0C">
+<link rel="icon" href="../cover.jpg">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:title" content="YouTube на мільйон — менторська програма ЮНМ">
+<meta property="og:description" content="Вийди на дохід від $2 000 щомісяця на YouTube Shorts — без показу обличчя і складного монтажу, 2 години на день.">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+</head>
+<body>
+<style>
+  :root{
+    color-scheme:dark;
+
+    --ground:#0B0A0C;
+    --ground-2:#100D0F;
+    --surface:#141013;
+    --surface-2:#1C1418;
+    --ink:#F5F2F3;
+    --ink-2:#A2969A;
+    --ink-3:#6E6367;
+    --rule:#2E2226;
+    --accent:#FF1522;
+    --accent-lo:#8E0D14;
+    --accent-deep:#4B0A10;
+    --on-accent:#FFFFFF;
+    --gold:#E3B23C;
+
+    --display:"Unbounded","Trebuchet MS",system-ui,sans-serif;
+    --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+    --mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+
+    --pad:20px;
+    --shell:1080px;
+    --dock-h:76px;
+  }
+
+  *{box-sizing:border-box}
+
+  body{
+    margin:0;
+    background-color:var(--ground);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  .shell{width:100%;max-width:var(--shell);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+
+  .mono{
+    font-family:var(--mono);font-size:11px;font-weight:500;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);
+  }
+
+  /* ============ top bar ============ */
+  .top{border-bottom:1px solid var(--rule);background:var(--ground);position:sticky;top:0;z-index:40}
+  .top .shell{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;padding-bottom:12px}
+  .wordmark{font-family:var(--display);font-weight:900;font-size:14px;letter-spacing:.06em}
+  .top .live{display:flex;align-items:center;gap:7px}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:blink 2.4s ease-in-out infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+  /* ============ hero ============ */
+  .hero{position:relative}
+  .badges{display:flex;flex-wrap:wrap;gap:8px}
+  .badge{
+    display:inline-flex;align-items:center;gap:7px;
+    border:1px solid var(--rule);color:var(--ink-2);
+    font-family:var(--mono);font-size:10.5px;font-weight:500;
+    letter-spacing:.14em;text-transform:uppercase;
+    padding:6px 10px;border-radius:3px;
+  }
+  .badge b{color:var(--gold);font-weight:600}
+
+  .photo{position:relative;width:100%;height:min(38vh,300px);overflow:hidden;background:var(--surface);border:1px solid var(--rule);border-radius:14px;margin-top:20px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px}
+  .photo .mono{color:var(--ink-3)}
+  .photo .mark{font-family:var(--display);font-weight:900;font-size:15px;letter-spacing:.1em;color:var(--rule)}
+
+  .hero-copy{position:relative;margin-top:28px;display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+
+  h1{
+    font-family:var(--display);font-weight:900;
+    font-size:clamp(32px,8.4vw,60px);line-height:1.02;letter-spacing:-.03em;
+    margin:0;text-wrap:balance;
+  }
+  h1 em{font-style:normal;display:block;color:var(--accent)}
+  .sub{margin:0;font-size:16px;line-height:1.5;color:var(--ink-2);max-width:46ch}
+
+  /* ============ booking box ============ */
+  .price-box{
+    width:100%;border:1px solid var(--rule);background:var(--surface);
+    border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:14px;margin-top:4px;
+  }
+  .price-row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .price-now{font-family:var(--display);font-weight:900;font-size:clamp(26px,6vw,34px);letter-spacing:-.02em;color:var(--ink)}
+  .price-old{font-family:var(--mono);font-size:16px;color:var(--ink-3);text-decoration:line-through}
+  .price-meta{margin:0;font-size:13px;color:var(--ink-2)}
+  .price-meta b{color:var(--ink)}
+  .booking-note{font-size:13px;color:var(--ink-2);margin:0;padding-top:12px;border-top:1px solid var(--rule)}
+  .booking-note b{color:var(--gold);font-weight:600}
+  .scarcity-row{display:flex;align-items:center;gap:8px}
+  .scarcity-row .dot{position:static}
+  .scarcity-row span{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+
+  /* ============ buttons ============ */
+  .btn-group{display:flex;flex-direction:column;gap:10px;width:100%}
+  .btn{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    width:100%;text-align:center;text-decoration:none;
+    background:var(--accent);color:var(--on-accent);
+    font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-.01em;
+    padding:16px 20px;border-radius:5px;
+    box-shadow:0 10px 30px -12px rgba(255,21,34,.75);
+    transition:transform .16s ease, box-shadow .16s ease;
+  }
+  .btn.ghost{background:transparent;border:1px solid var(--rule);color:var(--ink);box-shadow:none}
+  .btn:active{transform:translateY(1px)}
+  .btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+  .btn .arrow{font-family:var(--mono);font-weight:400}
+  .contact-link{display:flex;flex-direction:column;gap:2px;text-decoration:none;color:var(--ink);align-items:flex-start}
+  .contact-link b{font-family:var(--display);font-weight:700;font-size:14px}
+  .contact-link span{font-size:12.5px;color:var(--ink-2)}
+
+  /* ============ problem ============ */
+  .problem{border-top:1px solid var(--rule);background:var(--ground-2)}
+  .problem .shell{padding-top:36px;padding-bottom:36px}
+  .problem .points{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
+  .problem .points li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;line-height:1.5;color:var(--ink-2)}
+  .problem .points li::before{content:"✕";flex:none;color:var(--accent);font-family:var(--mono);font-weight:600;margin-top:1px}
+  .problem .result{margin:22px 0 0;padding-top:20px;border-top:1px solid var(--rule);font-family:var(--display);font-weight:700;font-size:16px;color:var(--ink)}
+
+  /* ============ section shared ============ */
+  section h2.label{margin:0;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
+  section h2.title{
+    margin:8px 0 0;font-family:var(--display);font-weight:900;
+    font-size:clamp(24px,6vw,38px);line-height:1.1;letter-spacing:-.02em;text-wrap:balance;
+  }
+
+  /* ============ method (why) ============ */
+  .why{border-top:1px solid var(--rule)}
+  .why .shell{padding-top:36px;padding-bottom:40px}
+  .why-grid{display:flex;flex-direction:column;gap:26px;margin-top:24px}
+  .why-item{display:flex;gap:16px}
+  .why-item .num{flex:none;font-family:var(--display);font-weight:900;font-size:26px;color:var(--accent);line-height:1}
+  .why-item h3{margin:0 0 6px;font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:-.01em}
+  .why-item p{margin:0;font-size:15px;line-height:1.5;color:var(--ink-2)}
+
+  /* ============ founders ============ */
+  .founders{background:var(--ground-2);border-top:1px solid var(--rule)}
+  .founders .shell{padding-top:36px;padding-bottom:40px}
+  .f-grid{display:flex;flex-direction:column;gap:16px;margin-top:24px}
+  .f-card{border:1px solid var(--rule);background:var(--surface);border-radius:12px;padding:20px}
+  .f-photo{width:100%;height:200px;border:1px solid var(--rule);border-radius:10px;background:var(--ground);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;margin-bottom:16px}
+  .f-photo .mark{font-family:var(--display);font-weight:900;font-size:13px;letter-spacing:.1em;color:var(--rule)}
+  .f-card h3{margin:0;font-family:var(--display);font-weight:900;font-size:19px;letter-spacing:-.01em}
+  .f-card .role{margin:4px 0 0;font-size:14px;color:var(--ink-2);line-height:1.45}
+  .f-card .handle{display:block;margin-top:12px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--gold)}
+
+  /* ============ roadmap ============ */
+  .roadmap{border-top:1px solid var(--rule)}
+  .roadmap .shell{padding-top:36px;padding-bottom:40px}
+  .road-steps{list-style:none;margin:24px 0 0;padding:0;display:flex;flex-direction:column;gap:0}
+  .road-steps li{position:relative;padding:0 0 22px 26px}
+  .road-steps li::before{content:"";position:absolute;left:4px;top:6px;bottom:-6px;width:1px;background:var(--rule)}
+  .road-steps li:last-child{padding-bottom:0}
+  .road-steps li:last-child::before{display:none}
+  .road-steps li::after{content:"";position:absolute;left:0;top:5px;width:9px;height:9px;border-radius:50%;background:var(--ground);border:2px solid var(--accent)}
+  .road-steps .key{display:block;font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+  .road-steps p{margin:0;font-size:15px;color:var(--ink)}
+  .road-result{margin-top:20px;padding:16px;border:1px solid var(--rule);border-radius:10px;background:var(--surface);font-family:var(--display);font-weight:700;font-size:16px;text-align:center}
+  .road-result b{color:var(--accent)}
+
+  /* ============ practice cards ============ */
+  .practice{background:var(--ground-2);border-top:1px solid var(--rule)}
+  .practice .shell{padding-top:36px;padding-bottom:40px}
+  .prac-grid{display:flex;flex-direction:column;gap:14px;margin-top:24px}
+  .prac-card{border:1px solid var(--rule);background:var(--surface);border-radius:12px;padding:18px}
+  .prac-card .mod-head{display:flex;align-items:baseline;gap:10px}
+  .prac-card .num{font-family:var(--display);font-weight:900;color:var(--accent);font-size:15px}
+  .prac-card h3{margin:0;font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-.01em}
+  .prac-card p{margin:10px 0 0;font-size:14.5px;line-height:1.55;color:var(--ink-2)}
+  .prac-card p b{color:var(--ink);font-weight:600}
+
+  /* ============ testimonials ============ */
+  .testimonials{border-top:1px solid var(--rule)}
+  .testimonials .shell{padding-top:36px;padding-bottom:40px}
+  .t-grid{display:flex;flex-direction:column;gap:16px;margin-top:24px}
+  .t-card{border:1px solid var(--rule);background:var(--surface);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:14px}
+  .t-card .who b{display:block;font-family:var(--display);font-weight:700;font-size:15px}
+  .t-card .who span{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+  .t-card p{margin:0;font-size:14.5px;line-height:1.5;color:var(--ink-2)}
+  .t-stats{display:flex;gap:18px;flex-wrap:wrap;padding-top:14px;border-top:1px solid var(--rule)}
+  .t-stats div b{display:block;font-family:var(--display);font-weight:900;font-size:18px;color:var(--gold)}
+  .t-stats div span{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+
+  /* ============ program numbers ============ */
+  .numbers{background:var(--ground-2);border-top:1px solid var(--rule)}
+  .numbers .shell{padding-top:32px;padding-bottom:32px;display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  .numbers .stat b{display:block;font-family:var(--display);font-weight:900;font-size:clamp(22px,5.6vw,30px);color:var(--accent)}
+  .numbers .stat span{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+
+  /* ============ program modules ============ */
+  .programme{border-top:1px solid var(--rule)}
+  .programme .shell{padding-top:36px;padding-bottom:40px}
+  .mod-grid{display:flex;flex-direction:column;gap:14px;margin-top:24px}
+  .mod-card{border:1px solid var(--rule);background:var(--surface);border-radius:12px;padding:18px}
+  .mod-card .mod-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+  .mod-card h3{margin:0;font-family:var(--display);font-weight:700;font-size:15.5px;letter-spacing:-.01em}
+  .mod-card .count{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);white-space:nowrap}
+  .mod-card ul{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:7px}
+  .mod-card li{font-size:14px;line-height:1.45;color:var(--ink-2);padding-left:14px;position:relative}
+  .mod-card li::before{content:"—";position:absolute;left:0;color:var(--ink-3)}
+
+  /* ============ promise-style banner ============ */
+  .promise{border-top:1px solid var(--rule);background:var(--ground-2)}
+  .promise .shell{padding-top:36px;padding-bottom:36px}
+  .promise p{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(19px,5vw,28px);line-height:1.35;letter-spacing:-.02em;text-wrap:pretty}
+  .promise b{font-weight:700;color:var(--accent)}
+
+  /* ============ extras list ============ */
+  .extras{border-top:1px solid var(--rule)}
+  .extras .shell{padding-top:36px;padding-bottom:40px}
+  .extras .points{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
+  .extras .points li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;line-height:1.5}
+  .extras .points li::before{content:"✓";flex:none;color:var(--accent);font-family:var(--mono);font-weight:600;margin-top:1px}
+  .extras .highlight{margin:22px 0 0;padding:16px;border:1px solid var(--accent-lo);border-radius:10px;background:var(--surface);font-family:var(--display);font-weight:700;font-size:16px;text-align:center}
+  .extras .highlight b{color:var(--accent)}
+
+  /* ============ objection quote ============ */
+  .final-quote{background:var(--ground-2);border-top:1px solid var(--rule)}
+  .final-quote .shell{padding-top:40px;padding-bottom:40px}
+  .final-quote blockquote{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(17px,4.2vw,21px);line-height:1.45;letter-spacing:-.01em;color:var(--ink-2)}
+  .final-quote blockquote b{color:var(--ink);font-weight:600}
+  .final-quote cite{display:block;margin-top:16px;font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+  .final-quote .note{margin:18px 0 0;font-size:14px;line-height:1.55;color:var(--ink-2);max-width:60ch}
+
+  /* ============ pricing tiers ============ */
+  .tiers{border-top:1px solid var(--rule)}
+  .tiers .shell{padding-top:36px;padding-bottom:40px}
+  .tier-grid{display:flex;flex-direction:column;gap:16px;margin-top:24px}
+  .tier{position:relative;border:1px solid var(--rule);background:var(--surface);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px}
+  .tier.featured{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+  .tier .ribbon{position:absolute;top:-11px;left:22px;background:var(--accent);color:var(--on-accent);font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:3px}
+  .tier h3{margin:6px 0 0;font-family:var(--display);font-weight:900;font-size:19px;letter-spacing:-.01em}
+  .tier .goal{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.5}
+  .tier .tier-price{display:flex;align-items:baseline;gap:10px;margin-top:4px}
+  .tier .tier-price b{font-family:var(--display);font-weight:900;font-size:28px;color:var(--ink)}
+  .tier .tier-price s{font-family:var(--mono);font-size:14px;color:var(--ink-3)}
+  .tier ul{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+  .tier li{font-size:13.5px;line-height:1.45;color:var(--ink-2);padding-left:14px;position:relative}
+  .tier li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-family:var(--mono)}
+  .tier .fit{margin-top:4px;font-size:12.5px;color:var(--ink-3);line-height:1.5;font-style:normal}
+  .tier .btn{margin-top:6px}
+
+  /* ============ results grid ============ */
+  .results{background:var(--ground-2);border-top:1px solid var(--rule)}
+  .results .shell{padding-top:36px;padding-bottom:40px}
+  .chan-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:24px}
+  .chan-item{border:1px solid var(--rule);border-radius:10px;padding:14px;background:var(--surface)}
+  .chan-item b{display:block;font-family:var(--display);font-weight:700;font-size:13.5px;letter-spacing:-.005em}
+  .chan-item span{display:block;margin-top:4px;font-family:var(--mono);font-size:12px;color:var(--accent)}
+
+  /* ============ mission ============ */
+  .mission{border-top:1px solid var(--rule)}
+  .mission .shell{padding-top:36px;padding-bottom:36px}
+  .mission p{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(18px,4.6vw,25px);line-height:1.4;letter-spacing:-.02em}
+  .mission .fine{margin-top:16px;font-family:var(--body);font-size:14px;font-weight:400;color:var(--ink-2);letter-spacing:0}
+
+  /* ============ bonuses ============ */
+  .bonuses{background:var(--ground-2);border-top:1px solid var(--rule)}
+  .bonuses .shell{padding-top:36px;padding-bottom:40px}
+  .bonus-grid{display:flex;flex-direction:column;gap:20px;margin-top:24px}
+  .bonus-item{display:flex;gap:14px}
+  .bonus-item .num{flex:none;font-family:var(--display);font-weight:900;font-size:20px;color:var(--accent)}
+  .bonus-item p{margin:0;font-size:14.5px;line-height:1.5;color:var(--ink-2)}
+  .bonus-price{margin-top:22px;padding-top:20px;border-top:1px solid var(--rule)}
+  .bonus-price .price-now{display:block}
+  .bonus-price .fine{margin-top:8px;font-size:12.5px;color:var(--ink-3)}
+
+  /* ============ close / final CTA ============ */
+  .close{position:relative;border-top:1px solid var(--accent-lo);background:var(--ground);overflow:hidden}
+  .close::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 0%,rgba(255,21,34,.28),rgba(255,21,34,0) 65%)}
+  .close .shell{position:relative;padding-top:44px;padding-bottom:44px;display:flex;flex-direction:column;gap:18px;align-items:flex-start}
+  .close h2{margin:0;font-family:var(--display);font-weight:700;font-size:clamp(22px,6vw,36px);line-height:1.15;letter-spacing:-.02em;max-width:20ch}
+  .close .fine{margin:0;font-size:13px;color:var(--ink-3)}
+  .close .scarcity{margin:0;font-size:14px;color:var(--ink-2);max-width:52ch}
+
+  /* ============ footer ============ */
+  footer{border-top:1px solid var(--rule)}
+  footer .shell{display:flex;flex-direction:column;gap:6px;padding-top:20px;padding-bottom:calc(var(--dock-h) + 28px)}
+  footer .legal{font-size:11.5px;color:var(--ink-3);max-width:60ch;margin-top:8px}
+
+  /* ============ sticky dock ============ */
+  .dock{
+    position:fixed;left:0;right:0;bottom:0;z-index:50;
+    background:rgba(11,10,12,.92);
+    -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+    border-top:1px solid var(--rule);
+    padding:10px var(--pad) calc(10px + env(safe-area-inset-bottom));
+    display:flex;align-items:center;gap:12px;
+    transition:transform .28s cubic-bezier(.2,.8,.25,1);
+  }
+  .js .dock{transform:translateY(130%)}
+  .js .dock.show{transform:none}
+  .dock .meta{display:flex;flex-direction:column;line-height:1.2;flex:none}
+  .dock .meta span{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  .dock .meta b{font-family:var(--mono);font-weight:600;font-size:14px;color:var(--accent)}
+  .dock .btn{flex:1;padding:14px 18px;font-size:14px;box-shadow:none}
+
+  /* ============ tablet / desktop ============ */
+  @media (min-width:720px){
+    :root{--pad:32px}
+    body{font-size:17px}
+    .photo{height:min(40vh,340px)}
+    .btn-group{flex-direction:row}
+    .btn{width:auto;min-width:240px}
+    .numbers .shell{grid-template-columns:repeat(4,1fr)}
+    .why-grid,.f-grid,.t-grid,.prac-grid{flex-direction:row}
+    .why-item,.f-card,.t-card,.prac-card{flex:1}
+    .mod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .chan-grid{grid-template-columns:repeat(4,1fr)}
+    .tier-grid{flex-direction:row;align-items:stretch}
+    .tier{flex:1}
+    .bonus-grid{flex-direction:row}
+    .bonus-item{flex:1}
+    .quote .shell,.numbers .shell,.problem .shell,.results .shell,.testimonials .shell,
+    .why .shell,.programme .shell,.founders .shell,.roadmap .shell,.practice .shell,
+    .promise .shell,.extras .shell,.final-quote .shell,.tiers .shell,.mission .shell,
+    .bonuses .shell{padding-top:52px;padding-bottom:52px}
+    .dock{padding-left:32px;padding-right:32px}
+    .dock .btn{flex:none;min-width:260px}
+    .dock .meta{margin-right:auto}
+  }
+  @media (min-width:960px){
+    .hero .shell{padding-top:40px;padding-bottom:56px}
+    .hero-inner{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:48px;align-items:start}
+    .photo{order:2;height:460px;margin-top:0}
+    .hero-copy{order:1;margin-top:0}
+    h1{font-size:clamp(42px,4.2vw,58px)}
+    .road-steps{flex-direction:row;gap:0}
+    .road-steps li{flex:1;padding:26px 0 0;text-align:left}
+    .road-steps li::before{left:0;right:0;top:4px;bottom:auto;width:auto;height:1px}
+    .road-steps li::after{top:-1px;left:0}
+    .close .shell{padding-top:64px;padding-bottom:64px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important;transition:none !important}
+  }
+</style>
+
+<script>document.documentElement.classList.add('js');</script>
+
+<header class="top">
+  <div class="shell">
+    <span class="wordmark">ЮНМ</span>
+    <span class="live mono"><span class="dot"></span>Набір відкрито</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="shell">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="badges">
+          <span class="badge">Менторська програма ЮНМ</span>
+          <span class="badge">Автори — <b>Ензо та Аріз</b></span>
+        </div>
+        <h1>YouTube <em>на мільйон</em></h1>
+        <p class="sub">Вийди на дохід від <b>$2 000</b> щомісяця на YouTube Shorts — без показу обличчя і складного монтажу, виділяючи всього 2 години на день.</p>
+
+        <div class="price-box">
+          <div class="price-row">
+            <span class="price-now">3199 грн</span>
+          </div>
+          <p class="price-meta">Бронювання місця на розмову з командою · діє <b>лише в день дзвінка</b></p>
+          <div class="scarcity-row">
+            <span class="dot"></span>
+            <span>Місць у потоці обмежено</span>
+          </div>
+          <p class="booking-note">При бронюванні — 3 бонуси: <b>топ-5 ніш</b>, готові сценарії від Ензо та реклама каналу в блогах команди</p>
+        </div>
+
+        <div class="btn-group">
+          <a class="btn" id="heroCta" href="https://t.me/[МЕНЕДЖЕР_ЮНМ]" target="_blank" rel="noopener">Забронювати розмову <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="#tarify">Подивитись тарифи</a>
+        </div>
+        <a class="contact-link" href="https://t.me/[МЕНЕДЖЕР_ЮНМ]" target="_blank" rel="noopener">
+          <b>Зв'язатися з менеджером →</b>
+          <span>Поставити запитання, уточнити деталі програми</span>
+        </a>
+      </div>
+
+      <div class="photo" role="img" aria-label="Місце для фото Ензо та Аріза">
+        <span class="mono">Фото Ензо та Аріза</span>
+        <span class="mark">ЮНМ</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="problem">
+  <div class="shell">
+    <h2 class="label">Чому 90% не заробляють на YouTube</h2>
+    <ul class="points">
+      <li>Бояться показувати обличчя — і навіть не починають</li>
+      <li>Застрягають на монтажі та технічних налаштуваннях</li>
+      <li>Місяцями чекають підписників, поки канал не приносить ні копійки</li>
+      <li>Знімають відео, але не вміють це монетизувати</li>
+    </ul>
+    <p class="result">Результат — купа зусиль і нуль доходу.</p>
+  </div>
+</section>
+
+<section class="why">
+  <div class="shell">
+    <h2 class="label">Авторська методика команди YouTube на мільйон</h2>
+    <h2 class="title">Монетизація кожного перегляду</h2>
+    <div class="why-grid">
+      <div class="why-item">
+        <span class="num">1</span>
+        <div>
+          <h3>Платять за перегляди, а не за фоловерів</h3>
+          <p>Тобі не потрібні мільйони підписників. Канал на 400 тис. може приносити більше, ніж блог на 4 млн.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <span class="num">2</span>
+        <div>
+          <h3>Без навичок монтажу та складних задач</h3>
+          <p>Замість оплати за рекламні інтеграції — гарантовані рекламні офери й покрокові інструкції, що робити.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <span class="num">3</span>
+        <div>
+          <h3>З повного нуля, будь-яка ніша</h3>
+          <p>Обираєш зручну для себе нішу — нарізку фільмів, лайф-стайл чи щось інше. Підходять усі ніші.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="founders">
+  <div class="shell">
+    <h2 class="label">Хто стоїть за твоїм результатом</h2>
+    <div class="f-grid">
+      <div class="f-card">
+        <div class="f-photo"><span class="mono">Фото</span><span class="mark">ЕНЗО</span></div>
+        <h3>Ензо</h3>
+        <p class="role">YouTube-блогер, 4 млн підписників. Срібна та золота кнопки YouTube. Живе лише з YouTube.</p>
+        <span class="handle">@the__enzo · $18-21 тис./міс</span>
+      </div>
+      <div class="f-card">
+        <div class="f-photo"><span class="mono">Фото</span><span class="mark">АРІЗ</span></div>
+        <h3>Аріз</h3>
+        <p class="role">Продюсер, власник 56 пабліків і каналів. Експерт з YouTube.</p>
+        <span class="handle">@kinozavr9 · $3-4 тис./міс · @prizman3 · $7-8 тис./міс</span>
+      </div>
+    </div>
+    <p class="price-meta" style="margin-top:18px">Разом розробили систему заробітку на YouTube — і сьогодні допомагають сотням людей заробляти, не виходячи з дому. Усі канали — без зйомок обличчя.</p>
+  </div>
+</section>
+
+<section class="roadmap">
+  <div class="shell">
+    <h2 class="label">Твій шлях всередині менторства</h2>
+    <ul class="road-steps">
+      <li><span class="key">01</span><p>Вхід в програму</p></li>
+      <li><span class="key">02</span><p>Вибір ніші</p></li>
+      <li><span class="key">03</span><p>Створення каналу</p></li>
+      <li><span class="key">04</span><p>Публікації перших постів</p></li>
+      <li><span class="key">05</span><p>Монетизація</p></li>
+      <li><span class="key">06</span><p>Масштабування</p></li>
+    </ul>
+    <div class="road-result">$2000+ кожного місяця з легким масштабуванням до <b>$5000+</b></div>
+  </div>
+</section>
+
+<section class="practice">
+  <div class="shell">
+    <h2 class="label">Як це виглядає на практиці</h2>
+    <div class="prac-grid">
+      <div class="prac-card">
+        <div class="mod-head"><span class="num">01</span><h3>Обираємо нішу</h3></div>
+        <p>Допомагаємо обрати нішу, яка підійде саме тобі та актуальна на ринку. Не хочеш показувати обличчя — обираємо ніші де це не потрібно. Не хочеш озвучувати — обираємо нарізки. Хочеш кайфувати від контенту — обираємо лайф-стайл.</p>
+      </div>
+      <div class="prac-card">
+        <div class="mod-head"><span class="num">02</span><h3>Створення каналу</h3></div>
+        <p>Щоб точно спрацювало і не було ризиків, одразу створюємо декілька каналів та тестуємо який зайде краще. Покрокова інструкція — що написати, що натиснути, як зробити.</p>
+      </div>
+      <div class="prac-card">
+        <div class="mod-head"><span class="num">03</span><h3>Публікація відео</h3></div>
+        <p>Уже з перших днів починаєш створювати контент, щоб через 2-4 тижні отримати перший прибуток. <b>50% успіху</b> — це правильні налаштування та чіпляючі заголовки.</p>
+      </div>
+      <div class="prac-card">
+        <div class="mod-head"><span class="num">04</span><h3>Монетизація</h3></div>
+        <p>Даємо готові рекламні пропозиції — обираєш те, що подобається, і додаєш у відео. Кожен перегляд приносить прибуток, не чекаючи 10 000 підписників.</p>
+      </div>
+      <div class="prac-card">
+        <div class="mod-head"><span class="num">05</span><h3>Масштабування</h3></div>
+        <p>Пройшло менше місяця, а ти вже масштабуєшся до $2000+. Знайшов зв'язку контенту, яка залетіла — проаналізував — масштабував. Все з підтримкою 24/7.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="shell">
+    <h2 class="label">Хто вже обрав діяти замість чекати</h2>
+    <div class="t-grid">
+      <div class="t-card">
+        <div class="who"><b>Сергій</b><span>Канал KinoSnips · @Kino_Snips</span></div>
+        <p>Звичайний хлопець, стартував з телефону. Без зйомок обличчя.</p>
+        <div class="t-stats">
+          <div><b>400 тис.</b><span>підписників за 8 міс.</span></div>
+          <div><b>$7-8 тис.</b><span>дохід зараз/міс</span></div>
+          <div><b>$2 500</b><span>перші через 4 тижні</span></div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="who"><b>Влад</b><span>Канал SeeRealFilm · @SeeRealFilm</span></div>
+        <p>Почав з нуля, без камери і без обличчя в кадрі.</p>
+        <div class="t-stats">
+          <div><b>2,2 млн</b><span>підписників за 10 міс.</span></div>
+          <div><b>$13-14 тис.</b><span>дохід зараз/міс</span></div>
+          <div><b>$3,5-4 тис.</b><span>перші</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="numbers">
+  <div class="shell">
+    <div class="stat"><b>7</b><span>модулів навчання</span></div>
+    <div class="stat"><b>4</b><span>тижні менторства</span></div>
+    <div class="stat"><b>24/7</b><span>підтримка</span></div>
+    <div class="stat"><b>$2000+</b><span>готові рекламні офери</span></div>
+  </div>
+</section>
+
+<section class="programme">
+  <div class="shell">
+    <h2 class="label">Програма навчання</h2>
+    <h2 class="title">Розбираємо YouTube на молекули</h2>
+    <div class="mod-grid">
+      <div class="mod-card">
+        <div class="mod-head"><h3>Модуль 1-2</h3><span class="count">Канал</span></div>
+        <ul>
+          <li>Правильне створення каналу</li>
+          <li>Оформлення каналу</li>
+          <li>Перший контент-план</li>
+          <li>Коли і як правильно публікувати відео</li>
+          <li>Монетизація — як та коли налаштувати</li>
+        </ul>
+      </div>
+      <div class="mod-card">
+        <div class="mod-head"><h3>Модуль 3-4</h3><span class="count">Контент</span></div>
+        <ul>
+          <li>Вибір прибуткової ніші</li>
+          <li>Як створювати відео</li>
+          <li>Де брати ідеї та як не застрягнути</li>
+          <li>Автоматизація роботи завдяки AI</li>
+          <li>Творча студія YouTube — як з нею працювати</li>
+          <li>Як аналізувати та покращувати контент</li>
+        </ul>
+      </div>
+      <div class="mod-card">
+        <div class="mod-head"><h3>Модуль 5-6</h3><span class="count">Масштаб</span></div>
+        <ul>
+          <li>Секретні фішки YouTube для x2 швидшого доходу</li>
+          <li>Монтаж відео</li>
+          <li>Авторське право — як не втратити канал</li>
+          <li>Оптимізація та публікація відео</li>
+          <li>Сценарії, що залітають на 1 000 000+ переглядів</li>
+          <li>Розвиток інших соцмереж як масштабування доходу</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="promise">
+  <div class="shell">
+    <p>Вам не потрібно вивчати тонну теорії. На менторстві ви з перших днів починаєте робити <b>цільові дії</b> — кожне завдання наближає вас до доходу в $2000+.</p>
+  </div>
+</section>
+
+<section class="extras">
+  <div class="shell">
+    <h2 class="label">Що ви отримаєте окрім уроків</h2>
+    <ul class="points">
+      <li>Telegram-групу з підтримкою 24/7</li>
+      <li>Безстроковий доступ до інформації</li>
+      <li>Пожиттєвий доступ до ком'юніті, в якому неможливо не заробляти</li>
+      <li>Доступ до готових рекламних оферів</li>
+    </ul>
+    <div class="highlight">А головне — прибуток вже з 2-4 тижня від <b>$2000</b></div>
+  </div>
+</section>
+
+<section class="final-quote">
+  <div class="shell">
+    <h2 class="label">А що якщо в мене не вийде?</h2>
+    <blockquote>«Ми завжди відповідаємо коротко: кожен, хто діяв за нашою системою, вже заробляє <b>$5000+</b>, виділяючи до двох годин в день, працюючи з телефону. Якщо ти гориш результатом — ми даємо робочу систему, далі питання лише в тому, чи готовий ти її впровадити.»</blockquote>
+    <cite>— Команда YouTube на мільйон</cite>
+    <p class="note">Тобі не потрібні навички монтажу, робота з камерою, бюджет на рекламу чи ноутбук — усе, що треба для старту, це телефон та дві години на день. У тарифах Premium і Diamond ми гарантуємо доведення до результату.</p>
+  </div>
+</section>
+
+<section class="tiers" id="tarify">
+  <div class="shell">
+    <h2 class="label">Варіанти участі</h2>
+    <h2 class="title">Обери свій темп до результату</h2>
+    <div class="tier-grid">
+      <div class="tier">
+        <h3>Start</h3>
+        <p class="goal">Для тих, хто хоче почати свій шлях та стабільно заробляти $2000-3000</p>
+        <div class="tier-price"><b>$285</b><s>$485</s></div>
+        <ul>
+          <li>Доступ до 5 модулів навчання</li>
+          <li>Telegram-групу з підтримкою</li>
+          <li>Рекламні офери для старту</li>
+          <li>Доступ до матеріалів на 6 місяців</li>
+        </ul>
+        <p class="fit">Ідеально для старту, якщо YouTube — додатковий заробіток.</p>
+        <a class="btn ghost" href="https://t.me/[МЕНЕДЖЕР_ЮНМ]" target="_blank" rel="noopener">Обрати Start</a>
+      </div>
+      <div class="tier featured">
+        <span class="ribbon">Гарантія результату</span>
+        <h3>Premium</h3>
+        <p class="goal">Чітке менторство команди — гарантований вихід на $3000-5000 щомісячного доходу</p>
+        <div class="tier-price"><b>$750</b><s>$1150</s></div>
+        <ul>
+          <li>Пожиттєвий доступ до всіх модулів</li>
+          <li>Персональна підтримка 24/7 від Ензо та Аріза</li>
+          <li>Супровід менторів до результату</li>
+          <li>Особистий розбір каналів від Ензо</li>
+          <li>Прямі контакти рекламодавців назавжди</li>
+          <li>Доступ до закритих каналів з ідеями</li>
+          <li>2 онлайн-зустрічі з менторами</li>
+        </ul>
+        <p class="fit">Для тих, хто готовий масштабуватися одразу і хоче доведення до результату «за руку».</p>
+        <a class="btn" href="https://t.me/[МЕНЕДЖЕР_ЮНМ]" target="_blank" rel="noopener">Обрати Premium</a>
+      </div>
+      <div class="tier">
+        <h3>Diamond</h3>
+        <p class="goal">Преміум формат особистої роботи з Ензо та Арізом — дохід $5000-7000</p>
+        <div class="tier-price"><b>$2 500</b><s>$4 500</s></div>
+        <ul>
+          <li>Тривалість програми — до 8 тижнів</li>
+          <li>Працюємо, поки ти не отримаєш результат</li>
+          <li>5 персональних онлайн-зустрічей з Ензо та Арізом</li>
+          <li>Особистий чат з Ензо та Арізом</li>
+          <li>Участь у закритій вечірці з Ензо</li>
+          <li>Пожиттєвий доступ до всіх оновлень</li>
+          <li>Все наповнення Premium</li>
+        </ul>
+        <p class="fit">Персональна робота з командою і гарантоване доведення до результату — готовий бізнес під ключ.</p>
+        <a class="btn ghost" href="https://t.me/[МЕНЕДЖЕР_ЮНМ]" target="_blank" rel="noopener">Обрати Diamond</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="results">
+  <div class="shell">
+    <h2 class="label">Результати каналів, які працюють за нашою системою</h2>
+    <div class="chan-grid">
+      <div class="chan-item"><b>Enzo</b><span>3,74 млн</span></div>
+      <div class="chan-item"><b>Взрывная Історія</b><span>4,26 млн</span></div>
+      <div class="chan-item"><b>FilmBytes</b><span>4,02 млн</span></div>
+      <div class="chan-item"><b>Kino-Akula</b><span>1,95 млн</span></div>
+      <div class="chan-item"><b>Minutka Time</b><span>1,34 млн</span></div>
+      <div class="chan-item"><b>MrFooFiq</b><span>1,18 млн</span></div>
+      <div class="chan-item"><b>КіноІндустрія</b><span>1,14 млн</span></div>
+      <div class="chan-item"><b>Inside Insights</b><span>105 тис.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="mission">
+  <div class="shell">
+    <p>Ми хочемо створити сильне ком'юніті навколо ютубу. Наша місія — не просто продати навчання, а створити місце де збираються топ-креатори та разом змінюють ринок.</p>
+    <p class="fine">Для тих, хто заходить у програму в день розмови — спеціальна ціна і бонуси. Ми беремо тих, хто готовий діяти, а не чекати.</p>
+  </div>
+</section>
+
+<section class="bonuses">
+  <div class="shell">
+    <h2 class="label">Бонуси при бронюванні місця</h2>
+    <h2 class="title">В день розмови з командою</h2>
+    <div class="bonus-grid">
+      <div class="bonus-item"><span class="num">01</span><p>Топ-5 ніш, які допоможуть вийти на дохід від $2000 в перший місяць</p></div>
+      <div class="bonus-item"><span class="num">02</span><p>5 готових сценаріїв та монтаж особисто від Ензо</p></div>
+      <div class="bonus-item"><span class="num">03</span><p>Реклама твого каналу в блогах нашої команди</p></div>
+    </div>
+    <div class="bonus-price">
+      <span class="price-now">3199 грн</span>
+      <p class="fine">Вартість броні для всіх тарифів. Бонуси і ціна броні діють лише в день розмови з командою. Місць у потоці обмежено.</p>
+    </div>
+  </div>
+</section>
+
+<section class="final-quote">
+  <div class="shell">
+    <blockquote>«7 років тому ми починали з телефоном, паралельно продаючи куртки на ринку. У нас не було ні досвіду, ні обладнання, ні готової системи — було тільки сильне бажання змінити життя раз і назавжди. Ми запакували весь свій досвід в цей продукт і точно знаємо: кожен, хто почне шлях з нами, вже через місяць скаже дякую в першу чергу собі.»</blockquote>
+    <cite>— Ензо та Аріз</cite>
+  </div>
+</section>
+
+<section class="close">
+  <div class="shell">
+    <h2>Забронюй розмову з командою</h2>
+    <p class="scarcity">Місць у потоці обмежено. Спеціальна ціна броні та бонуси діють лише в день розмови з командою.</p>
+    <div class="price-row">
+      <span class="price-now">3199 грн</span>
+    </div>
+    <p class="price-meta">Бронювання розмови · діє для всіх тарифів Start / Premium / Diamond</p>
+    <div class="btn-group">
+      <a class="btn" href="https://t.me/[МЕНЕДЖЕР_ЮНМ]" target="_blank" rel="noopener">Забронювати розмову <span class="arrow" aria-hidden="true">→</span></a>
+      <a class="btn ghost" href="#tarify">Обрати тариф</a>
+    </div>
+    <p class="fine">Натискаючи кнопку, ви погоджуєтесь з умовами Публічної оферти та Політики конфіденційності.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="shell">
+    <span class="mono">ЮНМ · YouTube на мільйон</span>
+    <span class="mono">Онлайн · Українською</span>
+    <p class="legal">Менторська програма Ензо та Аріза. Ціни вказані в доларах США, оплата за курсом на день бронювання. Умови участі — див. Публічну оферту.</p>
+  </div>
+</footer>
+
+<div class="dock" id="dock">
+  <div class="meta">
+    <span>Бронювання</span>
+    <b>3199 грн</b>
+  </div>
+  <a class="btn" href="https://t.me/[МЕНЕДЖЕР_ЮНМ]" target="_blank" rel="noopener">Забронювати розмову</a>
+</div>
+
+<script>
+  (function () {
+    // мітки з адреси лендингу їдуть далі в бот/менеджеру
+    var q = new URLSearchParams(location.search);
+    var utm = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+    if (utm.some(function (k) { return q.get(k); })) {
+      Array.prototype.forEach.call(document.querySelectorAll('a[href*="t.me"]'), function (a) {
+        try {
+          var u = new URL(a.href);
+          utm.forEach(function (k) { if (q.get(k)) u.searchParams.set(k, q.get(k)); });
+          a.href = u.toString();
+        } catch (e) {}
+      });
+    }
+
+    var dock = document.getElementById('dock');
+    var hero = document.getElementById('heroCta');
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        dock.classList.toggle('show', !entries[0].isIntersecting);
+      }, { rootMargin: '-8px' }).observe(hero);
+    } else {
+      dock.classList.add('show');
+    }
+  })();
+</script>
+</body>
+</html>
