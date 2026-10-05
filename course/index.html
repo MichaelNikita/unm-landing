@@ -761,7 +761,7 @@
   (function () {
     // мітки з адреси лендингу їдуть далі в бот/менеджеру
     var q = new URLSearchParams(location.search);
-    var utm = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+    var utm = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
     if (utm.some(function (k) { return q.get(k); })) {
       Array.prototype.forEach.call(document.querySelectorAll('a[href*="t.me"]'), function (a) {
         try {
