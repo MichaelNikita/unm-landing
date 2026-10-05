@@ -373,7 +373,7 @@ src="https://www.facebook.com/tr?id=4161324350827153&ev=PageView&noscript=1"
     // мітки з адреси лендингу їдуть далі в бот: ?utm_source=link_bio
     // перезаписує utm_source=site у кнопках, решта міток додається як є
     var q = new URLSearchParams(location.search);
-    var utm = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+    var utm = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
     if (utm.some(function (k) { return q.get(k); })) {
       Array.prototype.forEach.call(document.querySelectorAll('a[href*="tg.pulse.is"]'), function (a) {
         var u = new URL(a.href);
