@@ -268,6 +268,7 @@
       body.set('name', name);
       body.set('phone', phone);
       body.set('tg', tg);
+      body.set('page', 'zayavka');
 
       btn.disabled = true;
       fetch(SCRIPT_URL, { method: 'POST', body: body })
