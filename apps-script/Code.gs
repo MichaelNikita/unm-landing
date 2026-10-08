@@ -1,6 +1,6 @@
 /**
  * Приймає заявки з /zayavka і дописує їх у перший аркуш таблиці:
- * A — Ім'я, B — Номер, C — Нік у Telegram.
+ * A — Ім'я, B — Номер, C — Нік у Telegram, D — Сторінка (zayavka / zayavka-web).
  *
  * Скрипт має бути прив'язаний до таблиці (Розширення → Apps Script),
  * тоді ID таблиці в коді не потрібен. Як задеплоїти — див. README.
@@ -12,6 +12,8 @@ function doPost(e) {
   var phone = clean(p.phone, 25).replace(/[^\d\s()+-]/g, '');
   var tg = clean(p.tg, 40);
   if (!/^@[A-Za-z0-9_]{5,32}$/.test(tg)) tg = '';
+  // з якої сторінки прийшла заявка: лише латиниця, цифри, «-» і «_»
+  var page = clean(p.page, 40).replace(/[^A-Za-z0-9_-]/g, '');
 
   if (!name || phone.replace(/\D/g, '').length < 10) {
     return json({ result: 'error', error: 'invalid' });
@@ -21,9 +23,10 @@ function doPost(e) {
   lock.waitLock(10000);
   try {
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
+    if (!sheet.getRange(1, 4).getValue()) sheet.getRange(1, 4).setValue('Сторінка');
     var row = sheet.getLastRow() + 1;
     // формат «текст», щоб «+380…» не перетворився на число чи формулу
-    sheet.getRange(row, 1, 1, 3).setNumberFormat('@').setValues([[name, phone, tg]]);
+    sheet.getRange(row, 1, 1, 4).setNumberFormat('@').setValues([[name, phone, tg, page]]);
   } finally {
     lock.releaseLock();
   }
