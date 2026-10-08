@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Заявка — YouTube на мільйон · ЮНМ</title>
+<meta name="description" content="Залиш заявку на розмову з командою ЮНМ — ми зв'яжемося з тобою найближчим часом.">
+<meta name="theme-color" content="#0B0A0C">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../cover.jpg">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:title" content="Заявка — YouTube на мільйон">
+<meta property="og:description" content="Залиш заявку на розмову з командою ЮНМ.">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+</head>
+<body>
+<style>
+  :root{
+    color-scheme:dark;
+
+    --ground:#0B0A0C;
+    --ground-2:#100D0F;
+    --surface:#141013;
+    --surface-2:#1C1418;
+    --ink:#F5F2F3;
+    --ink-2:#A2969A;
+    --ink-3:#6E6367;
+    --rule:#2E2226;
+    --accent:#FF1522;
+    --accent-lo:#8E0D14;
+    --on-accent:#FFFFFF;
+    --gold:#E3B23C;
+
+    --display:"Unbounded","Trebuchet MS",system-ui,sans-serif;
+    --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+    --mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+
+    --pad:20px;
+    --shell:560px;
+  }
+
+  *{box-sizing:border-box}
+
+  body{
+    margin:0;min-height:100vh;display:flex;flex-direction:column;
+    background-color:var(--ground);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  .shell{width:100%;max-width:var(--shell);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+
+  .mono{
+    font-family:var(--mono);font-size:11px;font-weight:500;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);
+  }
+
+  /* ============ top bar ============ */
+  .top{border-bottom:1px solid var(--rule);background:var(--ground)}
+  .top .shell{max-width:1080px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;padding-bottom:12px}
+  .wordmark{font-family:var(--display);font-weight:900;font-size:14px;letter-spacing:.06em;color:var(--ink);text-decoration:none}
+  .top .live{display:flex;align-items:center;gap:7px}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:blink 2.4s ease-in-out infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+  /* ============ main ============ */
+  main{position:relative;flex:1;overflow:hidden}
+  main::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 60% at 50% 0%,rgba(255,21,34,.22),rgba(255,21,34,0) 60%);pointer-events:none}
+  main .shell{position:relative;padding-top:36px;padding-bottom:48px}
+
+  .badge{
+    display:inline-flex;align-items:center;gap:7px;
+    border:1px solid var(--rule);color:var(--ink-2);
+    font-family:var(--mono);font-size:10.5px;font-weight:500;
+    letter-spacing:.14em;text-transform:uppercase;
+    padding:6px 10px;border-radius:3px;
+  }
+  .badge b{color:var(--gold);font-weight:600}
+
+  h1{
+    font-family:var(--display);font-weight:900;
+    font-size:clamp(30px,8vw,46px);line-height:1.04;letter-spacing:-.03em;
+    margin:16px 0 0;text-wrap:balance;
+  }
+  h1 em{font-style:normal;color:var(--accent)}
+  .sub{margin:14px 0 0;font-size:16px;line-height:1.5;color:var(--ink-2);max-width:44ch}
+
+  /* ============ form ============ */
+  .card{
+    margin-top:26px;border:1px solid var(--rule);background:var(--surface);
+    border-radius:14px;padding:22px;
+  }
+  form{display:flex;flex-direction:column;gap:18px}
+  .field{display:flex;flex-direction:column;gap:7px}
+  .field label{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+  .field label .opt{color:var(--ink-3);text-transform:none;letter-spacing:.02em}
+  .field input{
+    width:100%;font:inherit;font-size:16px;color:var(--ink);
+    background:var(--ground);border:1px solid var(--rule);border-radius:6px;
+    padding:14px 14px;outline:none;
+    transition:border-color .16s ease, box-shadow .16s ease;
+  }
+  .field input::placeholder{color:var(--ink-3)}
+  .field input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,21,34,.18)}
+  .field.invalid input{border-color:var(--accent)}
+  .field .err{display:none;font-size:13px;color:var(--accent)}
+  .field.invalid .err{display:block}
+
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+  .btn{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    width:100%;text-align:center;text-decoration:none;cursor:pointer;border:0;
+    background:var(--accent);color:var(--on-accent);
+    font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-.01em;
+    padding:16px 20px;border-radius:5px;margin-top:4px;
+    box-shadow:0 10px 30px -12px rgba(255,21,34,.75);
+    transition:transform .16s ease, box-shadow .16s ease, opacity .16s ease;
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+  .btn[disabled]{opacity:.6;cursor:progress}
+  .btn .arrow{font-family:var(--mono);font-weight:400}
+
+  .form-error{display:none;margin:0;font-size:14px;color:var(--accent)}
+  .form-error.show{display:block}
+  .fine{margin:0;font-size:12.5px;color:var(--ink-3);line-height:1.5}
+
+  /* ============ success ============ */
+  .done{display:none;flex-direction:column;align-items:flex-start;gap:12px}
+  .done .check{width:44px;height:44px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:600;font-size:20px}
+  .done h2{margin:4px 0 0;font-family:var(--display);font-weight:900;font-size:22px;letter-spacing:-.02em}
+  .done p{margin:0;color:var(--ink-2);font-size:15px}
+  .card.sent form{display:none}
+  .card.sent .done{display:flex}
+  .done a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+
+  /* ============ footer ============ */
+  footer{border-top:1px solid var(--rule)}
+  footer .shell{max-width:1080px;display:flex;flex-direction:column;gap:6px;padding-top:20px;padding-bottom:calc(20px + env(safe-area-inset-bottom))}
+
+  @media (min-width:720px){
+    :root{--pad:32px}
+    body{font-size:17px}
+    main .shell{padding-top:64px;padding-bottom:72px}
+    .card{padding:28px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important;transition:none !important}
+  }
+</style>
+
+<header class="top">
+  <div class="shell">
+    <a class="wordmark" href="/course">ЮНМ</a>
+    <span class="live mono"><span class="dot"></span>Набір відкрито</span>
+  </div>
+</header>
+
+<main>
+  <div class="shell">
+    <span class="badge">YouTube на мільйон · <b>Заявка</b></span>
+    <h1>Залиш заявку <em>на розмову</em></h1>
+    <p class="sub">Заповни три поля — менеджер команди зв'яжеться з тобою, відповість на запитання та допоможе обрати тариф.</p>
+
+    <div class="card" id="card">
+      <form id="leadForm" novalidate>
+        <div class="field" id="f-name">
+          <label for="name">Ім'я</label>
+          <input id="name" name="name" type="text" autocomplete="name" placeholder="Як до тебе звертатися" maxlength="80" required>
+          <span class="err">Вкажи, будь ласка, ім'я</span>
+        </div>
+
+        <div class="field" id="f-phone">
+          <label for="phone">Номер телефону</label>
+          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+380 __ ___ __ __" maxlength="25" required>
+          <span class="err">Перевір номер — потрібно щонайменше 10 цифр</span>
+        </div>
+
+        <div class="field" id="f-tg">
+          <label for="tg">Нік у Telegram <span class="opt">(необов'язково)</span></label>
+          <input id="tg" name="tg" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="@nickname" maxlength="40">
+          <span class="err">Нік — це латиниця, цифри та «_», від 5 символів</span>
+        </div>
+
+        <div class="hp" aria-hidden="true">
+          <label for="website">Не заповнюйте це поле</label>
+          <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button class="btn" id="submitBtn" type="submit">Надіслати заявку <span class="arrow" aria-hidden="true">→</span></button>
+        <p class="form-error" id="formError" role="alert">Не вдалося надіслати заявку. Перевір інтернет і спробуй ще раз.</p>
+        <p class="fine">Натискаючи кнопку, ви погоджуєтесь з умовами Політики конфіденційності та на обробку персональних даних.</p>
+      </form>
+
+      <div class="done" role="status" aria-live="polite">
+        <span class="check" aria-hidden="true">✓</span>
+        <h2>Заявку отримано</h2>
+        <p>Дякуємо! Зараз відкриємо Telegram-бот ЮНМ. Якщо нічого не сталося — <a id="tgLink" href="https://t.me/unmveb_bot?start=6ac65b96708210f313004da4">натисни тут</a>.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="shell">
+    <span class="mono">ЮНМ · YouTube на мільйон</span>
+    <span class="mono">Онлайн · Українською</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    // URL веб-застосунку Google Apps Script (див. README → «Анкета /zayavka»)
+    // Куди переводимо після успішної заявки
+    var REDIRECT_URL = 'https://t.me/unmveb_bot?start=6ac65b96708210f313004da4';
+
+    var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbznH6HSezhs06P3i-VtybPcZ89DvfsxXYzwmyCsYdEYv3r2dceXrMXHLHZt-IE4TaJyDQ/exec';
+
+    var form = document.getElementById('leadForm');
+    var card = document.getElementById('card');
+    var btn = document.getElementById('submitBtn');
+    var formError = document.getElementById('formError');
+
+    function setInvalid(id, bad) {
+      document.getElementById(id).classList.toggle('invalid', bad);
+      return bad;
+    }
+
+    function normTg(v) {
+      v = v.trim().replace(/^https?:\/\/(www\.)?t\.me\//i, '').replace(/^@+/, '');
+      return v ? '@' + v : '';
+    }
+
+    ['name', 'phone', 'tg'].forEach(function (k) {
+      form.elements[k].addEventListener('input', function () {
+        document.getElementById('f-' + k).classList.remove('invalid');
+      });
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      formError.classList.remove('show');
+
+      var name = form.elements.name.value.trim();
+      var phone = form.elements.phone.value.trim();
+      var tg = normTg(form.elements.tg.value);
+      var digits = phone.replace(/\D/g, '');
+
+      var bad = false;
+      bad = setInvalid('f-name', name.length < 2) || bad;
+      bad = setInvalid('f-phone', digits.length < 10 || digits.length > 15 || /[^\d\s()+-]/.test(phone)) || bad;
+      bad = setInvalid('f-tg', tg !== '' && !/^@[A-Za-z0-9_]{5,32}$/.test(tg)) || bad;
+      if (bad) {
+        var first = form.querySelector('.invalid input');
+        if (first) first.focus();
+        return;
+      }
+
+      // бот заповнив приховане поле — вдаємо, що все ок
+      if (form.elements.website.value) { card.classList.add('sent'); window.location.href = REDIRECT_URL; return; }
+
+      var body = new URLSearchParams();
+      body.set('name', name);
+      body.set('phone', phone);
+      body.set('tg', tg);
+
+      btn.disabled = true;
+      fetch(SCRIPT_URL, { method: 'POST', body: body })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          if (!res || res.result !== 'success') throw new Error('bad response');
+          card.classList.add('sent');
+          window.location.href = REDIRECT_URL;
+        })
+        .catch(function () {
+          formError.classList.add('show');
+        })
+        .then(function () { btn.disabled = false; });
+    });
+  })();
+</script>
+</body>
+</html>
