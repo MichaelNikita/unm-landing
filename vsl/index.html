@@ -72,14 +72,27 @@ src="https://www.facebook.com/tr?id=4161324350827153&ev=PageView&noscript=1"
   .hero{background:radial-gradient(ellipse 70% 60% at 50% 0%,#5C0707 0%,#1E0303 45%,#000 80%);padding:72px 40px 96px}
   .hero-in{max-width:960px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:36px;text-align:center}
   .hero h1{margin:0;font-weight:800;text-transform:uppercase;font-size:44px;line-height:1.15;letter-spacing:.01em;max-width:900px}
-  .video{width:100%;aspect-ratio:16/9;border-radius:10px;background:radial-gradient(ellipse 60% 70% at 50% 50%,#2A0606 0%,#120808 70%) center/cover no-repeat;border:1px solid var(--line);position:relative;overflow:hidden;box-shadow:0 0 80px rgba(217,11,11,.25);cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center}
-  .video::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.25)}
-  .video .play{position:relative;width:88px;height:88px;border-radius:50%;background:var(--btn);display:flex;align-items:center;justify-content:center;transition:transform .15s,background .15s}
-  .video:hover .play{transform:scale(1.06);background:var(--btn-hi)}
-  .video .play svg{width:34px;height:34px}
-  .video iframe,.video #player{position:absolute;inset:0;width:100%;height:100%;border:0}
-  .video.on{cursor:default}
-  .video.on::before{display:none}
+  .video{width:100%;aspect-ratio:16/9;border-radius:10px;background:#000;border:1px solid var(--line);position:relative;overflow:hidden;box-shadow:0 0 80px rgba(217,11,11,.25)}
+  /* плеєр утричі вищий за рамку: назва, логотип і «Інші відео» YouTube лишаються за її межами */
+  .yt{position:absolute;left:0;top:-100%;width:100%;height:300%;pointer-events:none}
+  .yt iframe,.yt #player{width:100%;height:100%;border:0;display:block}
+  .video.needtap .yt{pointer-events:auto}
+  .shield{position:absolute;inset:0;z-index:2;cursor:pointer;display:none}
+  .video.playing .shield{display:block}
+  .cover{position:absolute;inset:0;z-index:3;border:0;padding:0;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(ellipse 60% 70% at 50% 50%,#2A0606 0%,#120808 70%) center/cover no-repeat;transition:opacity .2s}
+  .cover::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.25)}
+  .video.paused .cover{background:rgba(0,0,0,.35)!important}
+  .video.playing .cover,.video.needtap .cover{opacity:0;pointer-events:none}
+  .cover .play{position:relative;width:88px;height:88px;border-radius:50%;background:var(--btn);display:flex;align-items:center;justify-content:center;transition:transform .15s,background .15s}
+  .cover:hover .play{transform:scale(1.06);background:var(--btn-hi)}
+  .cover .play svg{width:34px;height:34px}
+  .cover .replay{display:none}
+  .video.ended .cover .replay{display:block}
+  .video.ended .cover .tri{display:none}
+  .bar{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.15);z-index:4;pointer-events:none;opacity:0;transition:opacity .2s}
+  .video.started .bar{opacity:1}
+  .bar i{display:block;height:100%;width:0;background:var(--red);transition:width .5s linear}
   .cta{display:flex;flex-direction:column;align-items:center;gap:12px;width:100%}
   .cta .btn{height:68px;width:100%;max-width:520px;font-size:18px}
   .cta-note{font-size:14px;color:var(--ink-2)}
@@ -170,8 +183,8 @@ src="https://www.facebook.com/tr?id=4161324350827153&ev=PageView&noscript=1"
     .hero-in{gap:24px}
     .hero h1{font-size:24px;line-height:1.2}
     .video{border-radius:8px;box-shadow:0 0 50px rgba(217,11,11,.25)}
-    .video .play{width:60px;height:60px}
-    .video .play svg{width:24px;height:24px}
+    .cover .play{width:60px;height:60px}
+    .cover .play svg{width:24px;height:24px}
     .cta{gap:10px}
     .cta .btn{height:60px;font-size:16px;max-width:none}
     .cta-note{font-size:13px}
@@ -217,9 +230,17 @@ src="https://www.facebook.com/tr?id=4161324350827153&ev=PageView&noscript=1"
   <div class="hero-in">
     <h1>4 кроки, як заробляти на YouTube Shorts <span class="red">без обличчя в кадрі</span></h1>
 
-    <button type="button" class="video" id="video" aria-label="Дивитися відео">
-      <span class="play"><svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></span>
-    </button>
+    <div class="video" id="video">
+      <div class="yt"><div id="player"></div></div>
+      <div class="shield" id="shield" aria-hidden="true"></div>
+      <button type="button" class="cover" id="cover" aria-label="Дивитися відео">
+        <span class="play">
+          <svg class="tri" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+          <svg class="replay" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></svg>
+        </span>
+      </button>
+      <div class="bar"><i id="barFill"></i></div>
+    </div>
 
     <div class="cta">
       <a class="btn" href="#form">Заповнити анкету</a>
@@ -413,10 +434,14 @@ src="https://www.facebook.com/tr?id=4161324350827153&ev=PageView&noscript=1"
       if (window.fbq) fbq('trackCustom', ev);
     }
 
-    /* ---------- Відео: YouTube завантажується лише після кліку ---------- */
+    /* ---------- Відео: YouTube без його інтерфейсу, вантажиться лише після кліку ---------- */
     var box = document.getElementById('video');
+    var cover = document.getElementById('cover');
+    var shield = document.getElementById('shield');
+    var barFill = document.getElementById('barFill');
+    var player = null;
     var sent = {};
-    var timer;
+    var timer, tapTimer;
 
     function once(ev) {
       if (sent[ev]) return;
@@ -424,29 +449,57 @@ src="https://www.facebook.com/tr?id=4161324350827153&ev=PageView&noscript=1"
       track(ev);
     }
 
-    function startPlayer() {
-      box.classList.add('on');
-      box.removeAttribute('aria-label');
-      box.innerHTML = '<div id="player"></div>';
-      new YT.Player('player', {
-        videoId: VIDEO_ID,
-        playerVars: { autoplay: 1, rel: 0, playsinline: 1, modestbranding: 1 },
-        events: {
-          onStateChange: function (e) {
-            var p = e.target;
-            clearInterval(timer);
-            if (e.data !== YT.PlayerState.PLAYING) return;
-            once('VideoStart');
-            timer = setInterval(function () {
-              var d = p.getDuration();
-              if (!d) return;
-              var share = p.getCurrentTime() / d;
-              if (share >= 0.5) once('Video50');
-              if (share >= 0.9) { once('Video90'); clearInterval(timer); }
-            }, 1000);
-          }
+    function setState(name) {
+      ['playing', 'paused', 'ended', 'needtap'].forEach(function (c) { box.classList.toggle(c, c === name); });
+    }
+
+    function tick() {
+      var d = player.getDuration();
+      if (!d) return;
+      var share = player.getCurrentTime() / d;
+      barFill.style.width = (share * 100).toFixed(2) + '%';
+      if (share >= 0.5) once('Video50');
+      if (share >= 0.9) once('Video90');
+    }
+
+    function onState(e) {
+      var S = YT.PlayerState;
+      clearInterval(timer);
+      if (e.data === S.PLAYING) {
+        clearTimeout(tapTimer);
+        box.classList.add('started');
+        // наша кнопка ще мить закриває іконку ▶, яку YouTube блимає по центру після паузи
+        if (box.classList.contains('paused') || box.classList.contains('ended')) {
+          setTimeout(function () {
+            if (player.getPlayerState() === S.PLAYING) setState('playing');
+          }, 700);
+        } else {
+          setState('playing');
         }
+        once('VideoStart');
+        tick();
+        timer = setInterval(tick, 500);
+      } else if (e.data === S.PAUSED) {
+        setState('paused');
+      } else if (e.data === S.ENDED) {
+        barFill.style.width = '100%';
+        setState('ended');
+      }
+    }
+
+    function createPlayer() {
+      player = new YT.Player('player', {
+        videoId: VIDEO_ID,
+        playerVars: {
+          autoplay: 1, controls: 0, disablekb: 1, fs: 0, rel: 0,
+          iv_load_policy: 3, modestbranding: 1, playsinline: 1, cc_load_policy: 0
+        },
+        events: { onStateChange: onState }
       });
+      // якщо браузер не дав автозапуск зі звуком (буває на iPhone), наступний тап іде прямо в плеєр
+      tapTimer = setTimeout(function () {
+        if (!box.classList.contains('playing')) setState('needtap');
+      }, 2500);
     }
 
     // обкладинка: найкраще прев'ю, яке вже є на YouTube (заглушка YouTube має ширину 120px)
@@ -454,20 +507,30 @@ src="https://www.facebook.com/tr?id=4161324350827153&ev=PageView&noscript=1"
       if (!sizes.length) return;
       var img = new Image();
       img.onload = function () {
-        if (img.naturalWidth > 120) box.style.backgroundImage = 'url(' + img.src + ')';
+        if (img.naturalWidth > 120) cover.style.backgroundImage = 'url(' + img.src + ')';
         else poster(sizes.slice(1));
       };
       img.onerror = function () { poster(sizes.slice(1)); };
       img.src = 'https://i.ytimg.com/vi/' + VIDEO_ID + '/' + sizes[0] + '.jpg';
     })(['maxresdefault', 'sddefault', 'hqdefault']);
 
-    box.addEventListener('click', function () {
-      if (box.classList.contains('on')) return;
-      if (window.YT && YT.Player) return startPlayer();
-      window.onYouTubeIframeAPIReady = startPlayer;
+    cover.addEventListener('click', function () {
+      if (player && player.playVideo) {
+        if (box.classList.contains('ended')) player.seekTo(0, true);
+        player.playVideo();
+        return;
+      }
+      if (player) return;
+      setState('playing');
+      if (window.YT && YT.Player) return createPlayer();
+      window.onYouTubeIframeAPIReady = createPlayer;
       var s = document.createElement('script');
       s.src = 'https://www.youtube.com/iframe_api';
       document.head.appendChild(s);
+    });
+
+    shield.addEventListener('click', function () {
+      if (player && player.pauseVideo) player.pauseVideo();
     });
 
     /* ---------- Анкета ---------- */
